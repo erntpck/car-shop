@@ -1,25 +1,26 @@
-import { Stack, Link } from 'expo-router';
+import React from 'react';
+import { ScrollView, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Header } from '../components/Header';
+import { SearchBar } from '../components/SearchBar';
+import { BrandList } from '../components/BrandList';
+import { PopularCars } from '../components/PopularCars';
+import { BottomNav } from '../components/BottomNav';
 
-import { View } from 'react-native';
-
-import { Button } from '@/components/Button';
-import { Container } from '@/components/Container';
-import { ScreenContent } from '@/components/ScreenContent';
-
-export default function Home() {
+export default function HomeScreen() {
   return (
-    <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <ScreenContent path="app/index.tsx" title="Home"></ScreenContent>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <Button title="Show Details" />
-        </Link>
-      </Container>
-    </View>
+    <SafeAreaView className="flex-1 bg-white">
+      <StatusBar barStyle="dark-content" />
+      <ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 120 }}>
+        <Header />
+        <SearchBar />
+        <BrandList />
+        <PopularCars />
+      </ScrollView>
+      <BottomNav />
+    </SafeAreaView>
   );
 }
-
-const styles = {
-  container: 'flex flex-1 bg-white',
-};
